@@ -5,13 +5,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "morgan": "^1.9.1",
+    "nodemon": "^1.19.3",
     "path": "^0.12.7",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-scripts": "3.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon --watch server index.js -e html,js,css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
