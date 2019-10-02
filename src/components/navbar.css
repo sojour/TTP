@@ -1,0 +1,17 @@
+.navbar {
+  background-color: #0b0c10;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  color: #45a29e;
+}
+.navbarItem {
+  color: #66fcf1;
+}
+
+.userOptions {
+  display: flex;
+  justify-content: space-between;
+}

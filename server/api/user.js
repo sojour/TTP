@@ -5,14 +5,14 @@ router.post('/login', async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { email: req.body.email } })
     if (!user) {
-      res.send('No such user found!')
+      res.status(401).send('No such user found!');
     } else if (!user.correctPassword(req.body.password)) {
-      res.send('Wrong password, try again')
+      res.status(401).send('Wrong password, try again');
     } else {
-      res.send(user)
+      res.status(200).json(user);
     }
   } catch (err) {
-    next(err)
+    next(err);
   }
 })
 
@@ -22,12 +22,12 @@ router.post('/signup', async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
     })
-    res.send(user)
+    res.status(200).json(user);
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
-      res.send('User already exists')
+      res.status(409).send('User already exists');
     } else {
-      next(err)
+      next(err);
     }
   }
 })
