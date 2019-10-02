@@ -1,11 +1,12 @@
 const User = require('./user')
 const Shares = require('./shares')
+const UserShares = require('./userShares')
 
-User.hasMany(Shares);
-Shares.belongsToMany(User);
+Shares.belongsToMany(User, { through: UserShares });
 
 
 module.exports = {
   User,
-  Shares
+  Shares,
+  UserShares
 }
