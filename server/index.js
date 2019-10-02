@@ -9,6 +9,8 @@ app.use(morgan('dev'));
 app.use(express.json({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
 
+app.use('/api', require('./api'));
+
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '../build')));
 
