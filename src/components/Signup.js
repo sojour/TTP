@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { gotLogin } from '../store'
+import { gotSignup } from '../store'
 
 
 
-const LogIn = (props) => {
+const Signup = (props) => {
   const { login, loginError } = props;
 
   const [user, setUser] = React.useState({
@@ -48,10 +48,10 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    login: (user) => dispatch(gotLogin(user))
+    login: (user) => dispatch(gotSignup(user))
   }
 }
 
-export default connect(mapState, mapDispatch)(LogIn)
+export default connect(mapState, mapDispatch)(Signup)
 
 

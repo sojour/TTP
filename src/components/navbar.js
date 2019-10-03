@@ -1,26 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { getLogout } from '../store'
 import './Navbar.css'
 
 const Navbar = (props) => {
+  const { logout } = props;
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
+  }
+
   const { user } = props;
   return (
     <div className='navbar'>
       {user ? (
-        <p className='navbarItem'>Log Out</p>
-      ) : (<p className='navbarItem'>Log In</p>
+        <p className='navbarItem' onClick={(e) => handleLogout(e)}>Log Out</p>
+      ) : (<div>
+        <Link className='navbarItem' to='/login'>Log In</Link>
+        <Link className='navbarItem'>Sign Up</Link>
+      </div>
         )
       }
       <h3 className='title'>Super Cool</h3>
       <div>
         {user ? (
           <div className='userOptions'>
-            <p className='navbarItem'>Portfolio |</p>
-            <p className='navbarItem'>Transactions</p>
+            <Link className='navbarItem'>Portfolio |</Link>
+            <Link className='navbarItem'>Transactions</Link>
           </div>
         ) : null}
       </div>
-    </div>
+    </div >
   )
 }
 
@@ -30,4 +42,10 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(Navbar)
+const mapDispatch = dispatch => {
+  return {
+    logout: () => dispatch(getLogout())
+  }
+}
+
+export default connect(mapState, mapDispatch)(Navbar)
