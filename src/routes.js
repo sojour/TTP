@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom'
-import { Home } from './components'
+import { Home, LogIn } from './components'
 
 const Routes = () => {
   return (
@@ -8,6 +8,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Home} />
 
+        <Route exact path="/login" component={LogIn} />
 
         {/* Displays our Login component as a fallback */}
         <Route component={Home} />

@@ -1,19 +1,64 @@
 import axios from 'axios';
+import history from '../history'
 
-const GET_USER = 'GET_USER'
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOGIN_FAILURE = 'LOGIN_FAILURE';
+const SINGUP_SUCCESS = 'SIGNUP_SUCCESS';
+const SINGUP_FAILURE = 'SINGUP_FAILURE';
 
-//initial state of user object
-const initialState = {
-  info: {}
+
+const getLoginSuccess = user => ({ type: LOGIN_SUCCESS, user });
+const getLoginError = () => ({ type: LOGIN_FAILURE });
+const getSingupSuccess = user => ({ type: SINGUP_SUCCESS, user });
+const getSignupError = () => ({ type: SINGUP_FAILURE });
+
+
+//Redux thunk to login an user
+export const gotLogin = user => async dispatch => {
+  try {
+    let { data } = await axios.post('/api/user/login', user);
+    console.log(data)
+    dispatch(getLoginSuccess(data));
+    history.push('/')
+  } catch (err) {
+    dispatch(getLoginError())
+    console.error(err);
+    history.push('/login')
+  }
+}
+
+export const gotSignup = (user) => async dispatch => {
+  try {
+    let { data } = await axios.post('/api/user/signup', user);
+    dispatch(getSingupSuccess(data))
+    history.push('/')
+  } catch (err) {
+    dispatch(getSignupError());
+    console.error(err)
+    history.push('/signup')
+
+  }
 }
 
 
-const getUser = user => ({ type: GET_USER, user })
+
+//initial state of user object
+const initialState = {
+  userInfo: null,
+  loginError: false,
+  signupError: false
+}
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
-      return { ...state, info: action.user };
+    case LOGIN_SUCCESS:
+      return { ...state, userInfo: action.user, loginError: false };
+    case LOGIN_FAILURE:
+      return { ...state, loginError: true };
+    case SINGUP_SUCCESS:
+      return { ...state, userInfo: action.user, signupError: false };
+    case SINGUP_FAILURE:
+      return { ...state, signupError: true };
     default:
       return state;
   }
