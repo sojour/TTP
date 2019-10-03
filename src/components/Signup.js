@@ -5,7 +5,7 @@ import { gotSignup } from '../store'
 
 
 const Signup = (props) => {
-  const { login, loginError } = props;
+  const { signup, signupError } = props;
 
   const [user, setUser] = React.useState({
     email: '',
@@ -18,10 +18,11 @@ const Signup = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(user);
+    signup(user);
   }
   return (
     < div >
+      <h3>Signup</h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
@@ -35,20 +36,20 @@ const Signup = (props) => {
           Submit
         </button>
       </form>
-      {loginError ? (<div><p>Error</p></div>) : null}
+      {signupError ? (<div><p>Error</p></div>) : null}
     </div >
   )
 }
 
 const mapState = state => {
   return {
-    loginError: state.user.loginError
+    signupError: state.user.signupError
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    login: (user) => dispatch(gotSignup(user))
+    signup: (user) => dispatch(gotSignup(user))
   }
 }
 

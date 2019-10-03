@@ -19,7 +19,7 @@ const Navbar = (props) => {
         <p className='navbarItem' onClick={(e) => handleLogout(e)}>Log Out</p>
       ) : (<div>
         <Link className='navbarItem' to='/login'>Log In</Link>
-        <Link className='navbarItem'>Sign Up</Link>
+        <Link className='navbarItem' to='/signup'>Sign Up</Link>
       </div>
         )
       }
