@@ -27,8 +27,8 @@ const Navbar = (props) => {
       <div>
         {user ? (
           <div className='userOptions'>
-            <Link className='navbarItem'>Portfolio |</Link>
-            <Link className='navbarItem'>Transactions</Link>
+            <Link className='navbarItem'>Buy</Link>
+            <Link className='navbarItem'>Portfolio</Link>
           </div>
         ) : null}
       </div>

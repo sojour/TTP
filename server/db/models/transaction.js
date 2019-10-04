@@ -4,7 +4,6 @@ const db = require('../index.js')
 const Transaction = db.define('shares', {
   ticker: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
   },
   quantity: {
@@ -15,10 +14,6 @@ const Transaction = db.define('shares', {
   },
   price: {
     type: Sequelize.INTEGER
-  },
-  timestamp: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW
   }
 })
 

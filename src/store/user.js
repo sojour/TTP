@@ -8,31 +8,31 @@ const SINGUP_FAILURE = 'SINGUP_FAILURE';
 const LOGOUT = 'LOGOUT';
 
 
-const getLoginSuccess = user => ({ type: LOGIN_SUCCESS, user });
-const getLoginError = () => ({ type: LOGIN_FAILURE });
-const getSingupSuccess = user => ({ type: SINGUP_SUCCESS, user });
-const getSignupError = () => ({ type: SINGUP_FAILURE });
+const gotLoginSuccess = user => ({ type: LOGIN_SUCCESS, user });
+const gotLoginError = () => ({ type: LOGIN_FAILURE });
+const gotSingupSuccess = user => ({ type: SINGUP_SUCCESS, user });
+const gotSignupError = () => ({ type: SINGUP_FAILURE });
 export const getLogout = () => ({ type: LOGOUT });
 
 //Redux thunk to login an user
-export const gotLogin = user => async dispatch => {
+export const getLogin = user => async dispatch => {
   try {
     let { data } = await axios.post('/api/user/login', user);
-    dispatch(getLoginSuccess(data));
+    dispatch(gotLoginSuccess(data));
     history.push('/');
   } catch (err) {
-    dispatch(getLoginError());
+    dispatch(gotLoginError());
     console.error(err);
   }
 }
 
-export const gotSignup = (user) => async dispatch => {
+export const getSignup = (user) => async dispatch => {
   try {
     let { data } = await axios.post('/api/user/signup', user);
-    dispatch(getSingupSuccess(data));
+    dispatch(gotSingupSuccess(data));
     history.push('/');
   } catch (err) {
-    dispatch(getSignupError());
+    dispatch(gotSignupError());
     console.error(err);
     history.push('/signup');
   }

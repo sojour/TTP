@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { gotLogin } from '../store'
+import { getLogin } from '../store'
 
 
 
@@ -50,7 +50,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    login: (user) => dispatch(gotLogin(user))
+    login: (user) => dispatch(getLogin(user))
   }
 }
 

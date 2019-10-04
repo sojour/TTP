@@ -9,18 +9,25 @@ router.get('/:userId', async (req, res, next) => {
         userId
       }
     });
-
-    res.json(transactions)
+    res.json(transactions);
   } catch (err) {
     next(err);
   }
 })
 
 router.post('/:userId', async (req, res, next) => {
+  const { ticker, quantity, price } = req.body;
+  const { userId } = req.params;
   try {
-
-  } catch (error) {
-
+    const transaction = await Transaction.create({
+      userId,
+      ticker,
+      quantity,
+      price
+    })
+    res.json(transaction);
+  } catch (err) {
+    next(err);
   }
 })
 
