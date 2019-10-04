@@ -5,11 +5,12 @@ import { getLogout } from '../store'
 import './Navbar.css'
 
 const Navbar = (props) => {
-  const { logout } = props;
+  const { logout, history } = props;
 
   const handleLogout = (e) => {
     e.preventDefault();
     logout();
+    history.push('/');
   }
 
   const { user } = props;
@@ -27,7 +28,7 @@ const Navbar = (props) => {
       <div>
         {user ? (
           <div className='userOptions'>
-            <Link className='navbarItem'>Buy</Link>
+            <Link to='/stocks' className='navbarItem'>Buy</Link>
             <Link className='navbarItem'>Portfolio</Link>
           </div>
         ) : null}

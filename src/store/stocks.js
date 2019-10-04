@@ -8,7 +8,7 @@ const BUY_STOCK = 'BUY_STOCK';
 const ALL_TRANSACTIONS = 'GET_TRANSACTIONS';
 
 const gotSearchResults = results => ({ type: SEARCH_RESULTS, results });
-export const gotSelectedStock = stock => ({ type: SELECTED_STOCK, stock });
+export const getSelectedStock = stock => ({ type: SELECTED_STOCK, stock });
 const madeTransaction = transaction => ({ type: BUY_STOCK, transaction });
 const gotAllTransactions = transactions => ({ type: ALL_TRANSACTIONS }, transactions)
 
