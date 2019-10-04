@@ -9,8 +9,8 @@ const ALL_TRANSACTIONS = 'GET_TRANSACTIONS';
 
 const gotSearchResults = results => ({ type: SEARCH_RESULTS, results });
 export const gotSelectedStock = stock => ({ type: SELECTED_STOCK, stock });
-const madeTransaction = stock => ({ type: BUY_STOCK, stock });
-const gotTransactions = transactions => ({ type: ALL_TRANSACTIONS }, transactions)
+const madeTransaction = transaction => ({ type: BUY_STOCK, transaction });
+const gotAllTransactions = transactions => ({ type: ALL_TRANSACTIONS }, transactions)
 
 
 export const getSearchResults = query => async dispatch => {
@@ -23,9 +23,19 @@ export const getSearchResults = query => async dispatch => {
   }
 }
 
-export const makeTransaction = stock => async dispatch => {
+export const makeTransaction = (userId, stock) => async dispatch => {
   try {
+    const { data } = await axios.post(`/api/transaction/${userId}`, stock);
+    dispatch(madeTransaction(data));
+  } catch (err) {
+    console.error(err);
+  }
+}
 
+export const getAllTransactions = userId => async dispatch => {
+  try {
+    const { data } = await axios.get(`/api/transaction/${userId}`);
+    dispatch(gotAllTransactions(data));
   } catch (err) {
     console.error(err);
   }
@@ -36,4 +46,20 @@ const initialState = {
   searchResults: [],
   selectedStock: null,
   transactions: [],
+}
+
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case SEARCH_RESULTS:
+      return { ...state, searchResults: action.results };
+    case SELECTED_STOCK:
+      return { ...state, selectedStock: action.stock };
+    case BUY_STOCK:
+      return { ...state, transactions: [...state.transactions, action.transaction] };
+    case ALL_TRANSACTIONS:
+      return { ...state, transactions: action.transactions };
+    default:
+      return state;
+  }
 }
