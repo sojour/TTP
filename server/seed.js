@@ -20,7 +20,7 @@ const seed = async () => {
   const transactionOne = await Transaction.create({
     ticker: 'APPL',
     quantity: 5,
-    price: 10000
+    price: 1000
   })
 
   console.log('Seeding success!');

@@ -6,7 +6,7 @@ import { getSearchResults, getSelectedStock } from '../store'
 
 
 const DisplayShares = props => {
-  const { searchStocks, searchResults } = props;
+  const { searchStocks, searchResults, getStock } = props;
   const [query, setQuery] = React.useState('');
 
   const handleChange = e => {
@@ -16,7 +16,11 @@ const DisplayShares = props => {
       searchStocks(query)
     }
   }
-  console.log(query);
+
+  const handleClick = e => {
+    e.preventDefault();
+    getStock(e.target.name)
+  }
   return (
     <div>
       <div>
@@ -36,9 +40,9 @@ const DisplayShares = props => {
               const symbol = stock['1. symbol'];
               const name = stock['2. name'];
               return (
-                <tr key={stock}>
-                  <th>{symbol}</th>
-                  <th>{name}</th>
+                <tr key={stock} name={stock} onClick={(e) => handleClick(e)}>
+                  <td>{symbol}</th>
+                  <td>{name}</th>
                 </tr>
               )
             })}
@@ -57,7 +61,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    searchStocks: (query) => dispatch(getSearchResults(query))
+    searchStocks: (query) => dispatch(getSearchResults(query)),
+    getStock: (ticker) => dispatch(getSelectedStock(ticker))
   }
 }
 

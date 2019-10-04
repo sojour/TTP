@@ -1,20 +1,32 @@
 import React from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom'
-import { Home, LogIn, Signup, PurchaseShares } from './components'
+import { connect } from 'react-redux'
+import { Home, LogIn, Signup, PurchaseStocks } from './components'
 
-const Routes = () => {
+const Routes = (props) => {
+  const { isLoggedIn } = props;
   return (
     <div>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/stocks" component={PurchaseShares} />
-        {/* Displays our Login component as a fallback */}
-        <Route component={Home} />
       </Switch>
+      {isLoggedIn && (
+        <Switch>
+          <Route exact path="/stocks" component={PurchaseStocks} />
+        </Switch>
+      )}
+      {/* Displays our Login component as a fallback */}
+      {/* <Route component={Home} /> */}
     </div>
   )
 }
 
-export default withRouter(Routes)
+const mapState = state => {
+  return {
+    isLoggedIn: state.user.userInfo,
+  }
+}
+
+export default withRouter(connect(mapState)(Routes))

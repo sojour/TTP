@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux'
-import { DisplayShares } from '../components'
+import { DisplayStock } from '.'
 
 
 const PurchaseShares = (props) => {
@@ -15,7 +14,7 @@ const PurchaseShares = (props) => {
       </div>
       <div>
         <div>
-          <div><DisplayShares /></div>
+          <div><DisplayStock /></div>
           <div></div>
         </div>
       </div>
