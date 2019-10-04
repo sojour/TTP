@@ -8,7 +8,7 @@ const BUY_STOCK = 'BUY_STOCK';
 const ALL_TRANSACTIONS = 'GET_TRANSACTIONS';
 
 const gotSearchResults = results => ({ type: SEARCH_RESULTS, results });
-export const getSelectedStock = stock => ({ type: SELECTED_STOCK, stock });
+const gotSelectedStock = stock => ({ type: SELECTED_STOCK, stock });
 const madeTransaction = transaction => ({ type: BUY_STOCK, transaction });
 const gotAllTransactions = transactions => ({ type: ALL_TRANSACTIONS }, transactions)
 
@@ -23,6 +23,15 @@ export const getSearchResults = query => async dispatch => {
   }
 }
 
+export const getSelectedStock = ticker => async dispatch => {
+  try {
+    const { data } = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${AV_API_KEY}`)
+
+    dispatch(gotSelectedStock(data));
+  } catch (err) {
+    console.error(err);
+  }
+}
 export const makeTransaction = (userId, stock) => async dispatch => {
   try {
     const { data } = await axios.post(`/api/transaction/${userId}`, stock);
