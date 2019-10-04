@@ -25,7 +25,10 @@ const User = db.define('user', {
   },
   cash: {
     type: Sequelize.INTEGER,
-    defaultValue: 500000
+    defaultValue: 500000,
+    validate: {
+      min: 0
+    }
   }
 })
 

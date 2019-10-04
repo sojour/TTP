@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { DisplayStock } from '.'
+import { DisplayStock, BuyStock } from '../components'
 
 
 const PurchaseShares = (props) => {
-  const { cash, email, id } = props.user;
-  const [stocks, setStocks] = React.useState(0)
-
+  const { selectedStock } = props;
   return (
     <div>
       <div>
@@ -15,7 +13,7 @@ const PurchaseShares = (props) => {
       <div>
         <div>
           <div><DisplayStock /></div>
-          <div></div>
+          {selectedStock && (<div><BuyStock /></div>)}
         </div>
       </div>
     </div>
@@ -24,7 +22,7 @@ const PurchaseShares = (props) => {
 
 const mapState = state => {
   return {
-    user: state.user.userInfo
+    selectedStock: state.stock.selectedStock
   }
 }
 

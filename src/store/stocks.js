@@ -27,7 +27,7 @@ export const getSelectedStock = ticker => async dispatch => {
   try {
     const { data } = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${AV_API_KEY}`)
 
-    dispatch(gotSelectedStock(data));
+    dispatch(gotSelectedStock(data['Global Quote']));
   } catch (err) {
     console.error(err);
   }

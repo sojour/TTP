@@ -11,7 +11,10 @@ const DisplayShares = props => {
 
   const handleChange = e => {
     setQuery([e.target.name] = e.target.value);
+  }
 
+  const handleSubmit = e => {
+    e.preventDefault();
     if (query) {
       searchStocks(query)
     }
@@ -19,13 +22,16 @@ const DisplayShares = props => {
 
   const handleClick = e => {
     e.preventDefault();
-    getStock(e.target.name)
+    getStock(e.target.getAttribute('name'))
   }
   return (
     <div>
       <div>
-        <label>Search for stocks here:</label>
-        <input name='query' value={query} onChange={handleChange}></input>
+        <form onSubmit={handleSubmit}>
+          <label>Search for stocks here:</label>
+          <input name='query' value={query} onChange={handleChange}></input>
+          <button type='submit'>Search</button>
+        </form>
       </div>
       <div>
         <table>
@@ -40,9 +46,9 @@ const DisplayShares = props => {
               const symbol = stock['1. symbol'];
               const name = stock['2. name'];
               return (
-                <tr key={stock} name={stock} onClick={(e) => handleClick(e)}>
-                  <td>{symbol}</th>
-                  <td>{name}</th>
+                <tr key={symbol} name={symbol} onClick={handleClick}>
+                  <td name={symbol}>{symbol}</td>
+                  <td name={symbol}>{name}</td>
                 </tr>
               )
             })}
