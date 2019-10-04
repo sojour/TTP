@@ -1,5 +1,5 @@
 const db = require('./db');
-const { User, UserShares } = require('./db/models');
+const { User, Transaction } = require('./db/models');
 
 
 const seed = async () => {
@@ -8,13 +8,20 @@ const seed = async () => {
   // seed your database here!
   const userOne = await User.create({
     email: 'one@gmail.com',
-    password: '1234'
+    password: '1234',
   });
 
   const userTwo = await User.create({
     email: 'two@gmail.com',
     password: '1234'
   });
+
+
+  const transactionOne = await Transaction.create({
+    ticker: 'APPL',
+    quantity: 5,
+    price: 10000
+  })
 
   console.log('Seeding success!');
   db.close();

@@ -10,7 +10,7 @@ router.post('/login', async (req, res, next) => {
     } else if (!user.correctPassword(password)) {
       res.status(401).send('Wrong password, try again');
     } else {
-      res.status(200).json(user);
+      res.json(user);
     }
   } catch (err) {
     next(err);
@@ -23,7 +23,7 @@ router.post('/signup', async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
     })
-    res.status(200).json(user);
+    res.json(user);
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(409).send('User already exists');

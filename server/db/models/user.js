@@ -22,6 +22,10 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('salt')
     }
+  },
+  cash: {
+    type: Sequelize.INTEGER,
+    defaultValue: 500000
   }
 })
 
