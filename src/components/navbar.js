@@ -30,7 +30,7 @@ const Navbar = (props) => {
           <div className='userOptions'>
             <Link to='/stocks' className='navbarItem'>Buy</Link>
             <Link to='/portfolio' className='navbarItem'>Portfolio</Link>
-            <Link className='navbarItem'>Transactions</Link>
+            <Link to='transactions' className='navbarItem'>Transactions</Link>
           </div>
         ) : null}
       </div>

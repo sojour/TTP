@@ -15,8 +15,6 @@ const Portfolio = props => {
 
   const [stocks, setStocks] = React.useState([]);
   const [totalWorth, setTotalWorth] = React.useState(0);
-  const [loaded, setLoaded] = React.useState(false);
-
 
   React.useEffect(() => {
     gotTransactions()
@@ -31,7 +29,6 @@ const Portfolio = props => {
       }
       return allStocks
     }, {});
-
     let stocksArray = [];
     let totalPrice = 0;
 
@@ -40,12 +37,13 @@ const Portfolio = props => {
 
       let compositeWithCurrent = {
         [stock]: compositeTransactions[stock],
-        current: data['Global Quote']
+        current: data['Global Quote'],
       }
-
+      totalPrice += (compositeWithCurrent[stock]) * ((+compositeWithCurrent.current['05. price']).toFixed(2));
       stocksArray.push(compositeWithCurrent);
     }
     setStocks(stocksArray);
+    setTotalWorth(totalPrice);
   }
 
 
@@ -54,7 +52,7 @@ const Portfolio = props => {
     <div>
       <h2>{user.email}'s Portfolio</h2>
       <div>
-        <p>Total Worth: </p>
+        <p>Total Worth: {totalWorth + (user.cash / 100)} </p>
         <p>Total Cash: {user.cash / 100} </p>
       </div>
       <div>
@@ -75,12 +73,20 @@ const Portfolio = props => {
                 const quantity = stock[ticker];
                 const currentPrice = (+stock.current['05. price']).toFixed(2);
                 const totalWorth = quantity * currentPrice;
-                const priceColor = currentPrice >= (+stock.current['02. open']).toFixed(2);
+                const openingPrice = (+stock.current['02. open']).toFixed(2);
+                let priceColor = null;
+                if (currentPrice > openingPrice) {
+                  priceColor = 'higher';
+                } else if (currentPrice == openingPrice) {
+                  priceColor = 'equal';
+                } else {
+                  priceColor = 'lower';
+                }
                 return (
                   <tr key={ticker}>
                     <td>{ticker}</td>
                     <td >{quantity}</td>
-                    <td className={priceColor ? 'higher' : 'lower'}> {currentPrice}</td>
+                    <td className={priceColor}> {currentPrice}</td>
                     <td>{totalWorth}</td>
                   </tr>
                 )

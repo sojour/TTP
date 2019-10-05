@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Home, LogIn, Signup, PurchaseStocks, Portfolio } from './components'
+import { Home, LogIn, Signup, PurchaseStocks, Portfolio, Transactions } from './components'
 
 const Routes = (props) => {
   const { isLoggedIn } = props;
@@ -16,6 +16,8 @@ const Routes = (props) => {
         <Switch>
           <Route exact path="/stocks" component={PurchaseStocks} />
           <Route exact path="/portfolio" component={Portfolio} />
+          <Route exact path="/transactions" component={Transactions} />
+
         </Switch>
       )}
       {/* Displays our Login component as a fallback */}
