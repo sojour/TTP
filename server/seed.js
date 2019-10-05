@@ -7,11 +7,15 @@ const seed = async () => {
 
   // seed your database here!
   const userOne = await User.create({
+    firstName: 'Hello',
+    lastName: 'There',
     email: 'one@gmail.com',
     password: '1234',
   });
 
   const userTwo = await User.create({
+    firstName: 'Good',
+    lastName: 'Bye',
     email: 'two@gmail.com',
     password: '1234'
   });

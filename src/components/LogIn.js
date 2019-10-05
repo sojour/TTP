@@ -27,11 +27,11 @@ const LogIn = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
-          <input name='email' value={user.email} onChange={handleChange}></input>
+          <input name='email' value={user.email} onChange={handleChange} type='email' required></input>
         </div>
         <div>
           <label>Password:</label>
-          <input name='password' value={user.password} onChange={handleChange}></input>
+          <input name='password' value={user.password} onChange={handleChange} type='password' required></input>
         </div>
         <button type='submit'>
           Submit

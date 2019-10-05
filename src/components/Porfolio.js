@@ -50,7 +50,7 @@ const Portfolio = props => {
 
   return (
     <div>
-      <h2>{user.email}'s Portfolio</h2>
+      <h2>{user.firstName}'s Portfolio</h2>
       <div>
         <p>Total Worth: {totalWorth + (user.cash / 100)} </p>
         <p>Total Cash: {user.cash / 100} </p>

@@ -10,7 +10,7 @@ const Transactions = props => {
 
   return (
     <div>
-      <h2>{user.email}'s Transactions</h2>
+      <h2>{user.firstName}'s Transactions</h2>
       <div>
         <table>
           <thead>
