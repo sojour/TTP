@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getAllTransactions } from '../store';
+import './Portfolio.css'
 const AV_API_KEY = process.env.AV_API_KEY;
 
 
@@ -74,12 +75,12 @@ const Portfolio = props => {
                 const quantity = stock[ticker];
                 const currentPrice = (+stock.current['05. price']).toFixed(2);
                 const totalWorth = quantity * currentPrice;
-
+                const priceColor = currentPrice >= (+stock.current['02. open']).toFixed(2);
                 return (
                   <tr key={ticker}>
                     <td>{ticker}</td>
                     <td >{quantity}</td>
-                    <td>{currentPrice}</td>
+                    <td className={priceColor ? 'higher' : 'lower'}> {currentPrice}</td>
                     <td>{totalWorth}</td>
                   </tr>
                 )
@@ -88,7 +89,7 @@ const Portfolio = props => {
           </table>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
