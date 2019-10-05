@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { makeTransaction, updateCash } from '../store'
+import './BuyStock.css'
 
 const DisplayShares = props => {
   const { user, selectedStock, makeTransaction, updateCash } = props;
@@ -31,9 +32,9 @@ const DisplayShares = props => {
 
   return (
     <div>
-      <h2>Available Cash: ${cash / 100}</h2>
+      <h2 id='title'>Available Cash: ${cash / 100}</h2>
       <div>
-        <table>
+        <table id='buyStock'>
           <tr>
             <th>Symbol:</th>
             <td>{selectedStock['01. symbol']}</td>

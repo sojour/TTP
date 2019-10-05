@@ -1,17 +1,33 @@
 .navbar {
-  /* background-color: #0b0c10; */
+  background-color: #0b0c10;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  height: 80px;
 }
 .title {
-  color: #45a29e;
+  color: #ffffff;
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  padding-top: 25px;
 }
 .navbarItem {
-  color: #66fcf1;
+  color: #ffffff;
+  text-align: center;
+  margin: auto;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.userOptions {
+.navbarContainer {
   display: flex;
-  justify-content: space-between;
+  z-index: 2;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.navbarSpacing {
+  padding-left: 5px;
+  padding-right: 5px;
 }

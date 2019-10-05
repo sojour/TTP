@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { getSearchResults, getSelectedStock } from '../store'
-
+import './DisplayStocks.css'
 
 
 const DisplayShares = props => {
@@ -28,13 +28,13 @@ const DisplayShares = props => {
     <div>
       <div>
         <form onSubmit={handleSubmit}>
-          <label>Search for stocks here:</label>
-          <input name='query' value={query} onChange={handleChange}></input>
+          <label>Search by Ticker Symbol:</label>
+          <input name='query' value={query} onChange={handleChange} required></input>
           <button type='submit'>Search</button>
         </form>
       </div>
       <div>
-        <table>
+        <table id='displayStock'>
           <thead>
             <tr>
               <th>Symbol</th>

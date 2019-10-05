@@ -1,0 +1,11 @@
+.stockContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.displayContainer {
+  display: flex;
+  justify-content: space-around;
+}

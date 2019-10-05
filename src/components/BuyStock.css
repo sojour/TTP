@@ -1,0 +1,15 @@
+#title {
+  margin-top: 0;
+}
+
+#buyStock tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #45a29e;
+  color: white;
+}

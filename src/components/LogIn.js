@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { getLogin } from '../store'
+import './LogIn.css'
 
 
 
@@ -24,16 +25,16 @@ const LogIn = (props) => {
     < div >
       <h3>Login</h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='field'>
+          <label className='label'>Email:</label>
           <input name='email' value={user.email} onChange={handleChange} type='email' required></input>
         </div>
-        <div>
-          <label>Password:</label>
+        <div className='field'>
+          <label className='label'>Password:</label>
           <input name='password' value={user.password} onChange={handleChange} type='password' required></input>
         </div>
-        <button type='submit'>
+        <button className='field' type='submit'>
           Submit
         </button>
       </form>
