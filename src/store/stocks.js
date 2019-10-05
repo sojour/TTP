@@ -10,7 +10,7 @@ const ALL_TRANSACTIONS = 'GET_TRANSACTIONS';
 const gotSearchResults = results => ({ type: SEARCH_RESULTS, results });
 const gotSelectedStock = stock => ({ type: SELECTED_STOCK, stock });
 const madeTransaction = transaction => ({ type: BUY_STOCK, transaction });
-const gotAllTransactions = transactions => ({ type: ALL_TRANSACTIONS }, transactions)
+const gotAllTransactions = transactions => ({ type: ALL_TRANSACTIONS, transactions })
 
 
 export const getSearchResults = query => async dispatch => {
