@@ -1,5 +1,5 @@
-export { default as Home } from './Home'
-export { default as Navbar } from './Navbar'
+export { default as Home } from './home'
+export { default as Navbar } from './navbar'
 export { default as LogIn } from './LogIn'
 export { default as Signup } from './Signup'
 export { default as Stocks } from './Stocks'

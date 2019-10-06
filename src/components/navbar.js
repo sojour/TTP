@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getLogout } from '../store'
-import './Navbar.css'
+import './navbar.css'
 
 const Navbar = (props) => {
   const { logout, history } = props;
