@@ -22,7 +22,7 @@ const LogIn = (props) => {
     login(user);
   }
   return (
-    < div >
+    < div className='container' >
       <h3>Login</h3>
 
       <form className='form' onSubmit={handleSubmit}>

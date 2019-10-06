@@ -9,3 +9,7 @@
   display: flex;
   justify-content: space-around;
 }
+
+div p {
+  color: #f73325;
+}

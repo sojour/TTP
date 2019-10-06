@@ -2,7 +2,7 @@
   background-color: #f2f2f2;
 }
 
-#displayStock tr:hover {
+tbody tr:hover {
   background-color: #ddd;
 }
 
@@ -10,6 +10,4 @@
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #45a29e;
-  color: white;
 }

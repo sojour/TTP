@@ -15,6 +15,7 @@ const Portfolio = props => {
 
   const [stocks, setStocks] = React.useState([]);
   const [totalWorth, setTotalWorth] = React.useState(0);
+  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
     gotTransactions()
@@ -32,18 +33,24 @@ const Portfolio = props => {
     let stocksArray = [];
     let totalPrice = 0;
 
-    for (let stock in compositeTransactions) {
-      const { data } = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock}&apikey=${AV_API_KEY}`)
+    try {
+      for (let stock in compositeTransactions) {
 
-      let compositeWithCurrent = {
-        [stock]: compositeTransactions[stock],
-        current: data['Global Quote'],
+        const { data } = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock}&apikey=${AV_API_KEY}`)
+
+        let compositeWithCurrent = {
+          [stock]: compositeTransactions[stock],
+          current: data['Global Quote'],
+        }
+        totalPrice += (compositeWithCurrent[stock]) * ((+compositeWithCurrent.current['05. price']).toFixed(2));
+        stocksArray.push(compositeWithCurrent);
+
       }
-      totalPrice += (compositeWithCurrent[stock]) * ((+compositeWithCurrent.current['05. price']).toFixed(2));
-      stocksArray.push(compositeWithCurrent);
+      setStocks(stocksArray);
+      setTotalWorth(totalPrice);
+    } catch{
+      setError(true)
     }
-    setStocks(stocksArray);
-    setTotalWorth(totalPrice);
   }
 
 
@@ -51,50 +58,55 @@ const Portfolio = props => {
   return (
     <div>
       <h2>{user.firstName}'s Portfolio</h2>
-      <div>
-        <p>Total Worth: {totalWorth + (user.cash / 100)} </p>
-        <p>Total Cash: {user.cash / 100} </p>
-      </div>
-      <div>
-        <h3>Stocks:</h3>
+      {error ? (<div><p id='error'>API Error</p></div>) : (
         <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Ticker</th>
-                <th>Quantity</th>
-                <th>Current Price ($)</th>
-                <th>Total Worth ($)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stocks.map(stock => {
-                const ticker = stock.current['01. symbol'];
-                const quantity = stock[ticker];
-                const currentPrice = (+stock.current['05. price']).toFixed(2);
-                const totalWorth = quantity * currentPrice;
-                const openingPrice = (+stock.current['02. open']).toFixed(2);
-                let priceColor = null;
-                if (currentPrice > openingPrice) {
-                  priceColor = 'higher';
-                } else if (currentPrice == openingPrice) {
-                  priceColor = 'equal';
-                } else {
-                  priceColor = 'lower';
-                }
-                return (
-                  <tr key={ticker}>
-                    <td>{ticker}</td>
-                    <td >{quantity}</td>
-                    <td className={priceColor}> {currentPrice}</td>
-                    <td>{totalWorth}</td>
+          <div>
+            <p>Total Worth: $ {totalWorth + (user.cash / 100)} </p>
+            <p>Total Cash: $ {user.cash / 100} </p>
+          </div>
+          <div>
+            <h3>Stocks:</h3>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ticker</th>
+                    <th>Quantity</th>
+                    <th>Current Price ($)</th>
+                    <th>Total Worth ($)</th>
                   </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                </thead>
+                <tbody>
+                  {stocks.map(stock => {
+                    const ticker = stock.current['01. symbol'];
+                    const quantity = stock[ticker];
+                    const currentPrice = (+stock.current['05. price']).toFixed(2);
+                    const totalWorth = quantity * currentPrice;
+                    const openingPrice = (+stock.current['02. open']).toFixed(2);
+                    let priceColor = null;
+                    if (currentPrice > openingPrice) {
+                      priceColor = 'higher';
+                    } else if (currentPrice == openingPrice) {
+                      priceColor = 'equal';
+                    } else {
+                      priceColor = 'lower';
+                    }
+                    return (
+                      <tr key={ticker}>
+                        <td>{ticker}</td>
+                        <td >{quantity}</td>
+                        <td className={priceColor}> {currentPrice}</td>
+                        <td>{totalWorth}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>)
+      }
+
     </div >
   )
 }

@@ -31,7 +31,7 @@ const DisplayShares = props => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h2 id='title'>Available Cash: ${cash / 100}</h2>
       <div>
         <table id='buyStock'>

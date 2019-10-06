@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { getSignup } from '../store'
+import './Signup.css'
 
 
 

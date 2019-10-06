@@ -11,13 +11,23 @@
   width: 100%;
   margin: auto;
   padding-top: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.title:hover {
+  color: #d6faf0;
 }
 .navbarItem {
   color: #ffffff;
   text-align: center;
   margin: auto;
   text-decoration: none;
-  cursor: pointer;
+}
+
+.navbarItem:hover {
+  color: #d6faf0;
 }
 
 .navbarContainer {

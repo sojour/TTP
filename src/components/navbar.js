@@ -28,7 +28,7 @@ const Navbar = (props) => {
           </div>
         )
       }
-      <h2 className='title'>Stock Tracker</h2>
+      <Link className='title' to='/'>Stock Tracker</Link>
       {user ? (
         <div className='navbarContainer'>
           <Link to='/stocks' className='navbarItem'>Buy</Link>

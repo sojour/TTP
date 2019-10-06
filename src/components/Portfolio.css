@@ -9,3 +9,7 @@
 .equal {
   color: gray;
 }
+
+#error {
+  color: #f73325;
+}
