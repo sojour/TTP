@@ -10,7 +10,7 @@ const Stocks = (props) => {
       <div>
         <h1>Purchase Stocks</h1>
       </div>
-      {apiError && (<div><p>API Error, Please wait 1 minute and try again!</p></div>)}
+      {apiError && (<div><p id="error">API Error, Please wait 1 minute and try again!</p></div>)}
       <div className='displayContainer'>
         <div><DisplayStock /></div>
         {selectedStock && (<div><BuyStock /></div>)}
