@@ -1,11 +1,23 @@
 import React from 'react';
 import './Home.css';
+import { connect } from 'react-redux'
 
 
-const Home = () => {
+const Home = (props) => {
+  const { user } = props;
   return (
-    <h1 className='mainText'>Welcome To Stock Tracker!</h1>
+    <div>
+      {user ? (<h1 className='mainText'>Welcome Back, {user.firstName}!</h1>) :
+        (<h1 className='mainText'>Welcome To Stock Tracker!</h1>)
+      }
+    </div>
   )
 }
 
-export default Home;
+const mapState = state => {
+  return {
+    user: state.user.userInfo
+  }
+}
+
+export default connect(mapState)(Home)

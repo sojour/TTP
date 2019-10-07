@@ -6,7 +6,7 @@ import './LogIn.css'
 
 
 const LogIn = (props) => {
-  const { login, loginError } = props;
+  const { login, loginError, history } = props;
 
   const [user, setUser] = React.useState({
     email: '',
@@ -17,9 +17,10 @@ const LogIn = (props) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(user);
+    await login(user);
+    history.push('/')
   }
   return (
     < div className='container' >
