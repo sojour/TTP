@@ -2,7 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Welcome to Stock Tracker!
 
-Users can buy and tracker their bought assets! <br>
+This is for the Oscar Coding Challenge. <br>
+
+Users can purchase and track their bought assets! <br>
 Please visit the deployed project at https://tpp-tracker.herokuapp.com/
 
 ### Available Scripts
