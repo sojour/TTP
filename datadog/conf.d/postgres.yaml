@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+  - host: ec2-174-129-231-25.compute-1.amazonaws.com
+    port: 5432
+    username: iftrnihizznmhm
+    password: 133155ceafe98cfa11c7594b245e282a3c5c6aead9a29d3496b322dc44a72600
+    dbname: d39in99scf5qln
+    ssl: True
