@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "crypto": "^1.0.1",
+    "dd-trace": "^0.16.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.3",
